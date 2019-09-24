@@ -13,12 +13,11 @@ This project provides simple form editor for Serverless Workflow.
 
 ## How to get the JSON?
 
-After editing the form click on the "Submit" button.
-This will trigger your workflow JSON to be downloaded by the browser.
-You will see the download of "workflow.json" file which contains the generated serverless workflow json.
+On the right side of the page you have a live-update JSON view. You can copy it (via copy buttonns) at any time.
+Alternatively at the bottom of the form you can click the Submit button to download the workflow jsonn.
 
 ## What it looks like
 
 <p align="center">
-<img src="img/form-example1.png" with="500" height="320" alt="Hello World Example"/>
+<img src="img/form-example2.png" with="500" height="320" alt="Form Example"/>
 </p>

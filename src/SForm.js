@@ -1,15 +1,15 @@
 import React from "react";
 import swschema from './schema/serverlessworkflowschema';
-import { Jumbotron } from 'react-bootstrap';
+import { Jumbotron, Row, Col, Card} from 'react-bootstrap';
 import Form from "react-jsonschema-form";
 import exportFromJSON from 'export-from-json'
+import ReactJson from 'react-json-view';
 
 class SForm extends React.Component  {
 
   constructor(props) {
     super(props);
     this.state = {
-      show: false,
       formData: {}
     };
   }
@@ -38,6 +38,9 @@ onFormError = (errors) => {
   onFormChange = ({changedFormData}) => {
     this.setState({formData: changedFormData});
   }
+
+  onFormDataChange = ({ formData }) =>
+    this.setState({formData});
   
   toggleModal = () => {
     this.setState({
@@ -47,14 +50,34 @@ onFormError = (errors) => {
 
   render() {
     return (
-    <Jumbotron>
-      <h1>Generate Serverless Workflow JSON</h1>
-      
-        <Form schema={swschema}
-          formData={this.state.formData}
-          onSubmit={this.onFormSubmit}
-          onError={this.onFormError}/>
-    </Jumbotron>
+      <div>
+      <Row>
+        <Col md={7}>
+        
+              <Jumbotron>
+                <h1>Generate Serverless Workflow JSON</h1>
+
+                <Form schema={swschema}
+                  formData={this.state.formData}
+                  onChange={this.onFormDataChange}
+                  onSubmit={this.onFormSubmit}
+                  onError={this.onFormError} />
+              </Jumbotron>
+        
+        </Col>
+        <Col md={5}>
+          <Card>
+            <Card.Header as="h2">Workflow JSON:</Card.Header>
+            <Card.Body>
+              <ReactJson src={this.state.formData}
+              displayObjectSize="false"
+              displayDataTypes="false"
+              />
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </div>
     )
   }
 }
